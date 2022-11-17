@@ -94,7 +94,6 @@ export default defineComponent({
 
   methods: {
     openAccount() {
-      debugger;
       this.dialogAcess = true;
     },
 
