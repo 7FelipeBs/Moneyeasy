@@ -1,1 +1,64 @@
 // app global css in SCSS form
+body {
+  font-family: "Roboto";
+}
+.menu {
+  background-color: $davys-grey;
+  color: $white;
+}
+
+.btnMenuOptions {
+  color: $davys-grey;
+}
+
+.btnLoginDialog {
+  color: $white;
+}
+
+.btnMenuOptions {
+  font-size: 1.1em;
+  font-family: $robotoMono;
+}
+
+.btnLoginDialog {
+  font-size: 1.4em;
+}
+
+// DAVYS LIMER GREEN //
+.text-limergreen {
+  color: $lime-green !important;
+}
+.bg-limergreen {
+  background: $lime-green !important;
+}
+////////////////////////
+// DAVYS CERULEAN CRAYOLA //
+.text-ceruleanC {
+  color: $cerulean-crayola !important;
+}
+.bg-ceruleanC {
+  background: $cerulean-crayola !important;
+}
+////////////////////////
+// DAVYS GREYS COLORS //
+.text-davysGreys {
+  color: $davys-grey !important;
+}
+.text-davysGreys-soft {
+  color: $davys-grey-soft !important;
+}
+.bg-davysGreys {
+  background: $davys-grey !important;
+}
+.bg-davysGreys-soft {
+  background: $davys-grey-soft !important;
+}
+////////////////////////
+// DAVYS PINK LAVENDER //
+.text-pinkLavender {
+  color: pink-lavender !important;
+}
+.bg-pinkLavender {
+  background: pink-lavender !important;
+}
+////////////////////////

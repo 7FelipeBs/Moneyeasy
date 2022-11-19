@@ -1,21 +1,25 @@
 <template>
   <div class="align">
-    <div class="row" style="max-width: 100%">
+    <div class="row">
       <div class="col-12 fieldAcess">
         <q-input
-          standout="bg-blue-2"
+          standout="bg-davysGreys-soft"
+          filled
           v-model="username"
           type="username"
-          label="Username"
+          label-color="davysGreys"
+          placeholder="Username"
         />
       </div>
 
       <div class="col-12 fieldAcess">
         <q-input
-          standout="bg-blue-2"
+          standout="bg-davysGreys-soft"
+          filled
           v-model="password"
           type="password"
-          label="password"
+          label-color="davysGreys"
+          placeholder="password"
         />
       </div>
     </div>
@@ -37,11 +41,12 @@ export default defineComponent({
   },
 });
 </script>
-<style>
+<style lang="scss">
 .align {
   display: flex;
   justify-content: center;
 }
+
 .fieldAcess {
   margin: 15px auto;
   padding: 0;

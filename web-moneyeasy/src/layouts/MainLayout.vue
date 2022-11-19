@@ -1,25 +1,27 @@
 <template>
   <q-layout view="hHh Lpr lff" style="height: 300px">
-    <q-header elevated class="bg-blue-grey">
+    <q-header elevated class="menu">
       <q-toolbar>
         <q-btn flat @click="drawer = !drawer" round dense icon="menu" />
-        <q-toolbar-title> Money Managed </q-toolbar-title>
+        <q-toolbar-title style="font-family: 'Roboto Mono'"
+          >Menu</q-toolbar-title
+        >
         <q-btn
           flat
           @click="openAccount"
           round
           dense
           icon="account_circle"
+          class="btnLoginDialog"
         ></q-btn>
       </q-toolbar>
 
       <q-drawer
         v-model="drawer"
-        class="secondary"
+        class="secondary btnMenuOptions"
         show-if-above
         side="left"
         bordered
-        style="color: black"
       >
         <q-list>
           <template v-for="(menuItem, index) in menuList" :key="index">
@@ -53,7 +55,7 @@
 
 <script>
 import { defineComponent, ref } from "vue";
-import AccountDialog from "src/pages/AccountDialog.vue";
+import AccountDialog from "src/pages/Login/AccountDialog.vue";
 
 export default defineComponent({
   name: "MainLayout",

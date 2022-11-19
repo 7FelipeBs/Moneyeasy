@@ -3,7 +3,7 @@
     <q-dialog v-model="dialogAcess">
       <q-card>
         <q-card-section>
-          <div class="text-h6 alignment">Account</div>
+          <div class="text-h6 alignment titleAccount">Account</div>
         </q-card-section>
 
         <q-card-section class="q-pt-none">
@@ -16,36 +16,32 @@
               <Signup />
             </div>
 
-            <div class="col-12 btnAcesso" v-if="!openSignup">
+            <div class="col-12 btnAlign" v-if="!openSignup">
               <q-btn
-                class="mg-5"
+                class="mg-5 btnSignin"
                 icon="login"
                 label="Signin"
-                color="primary"
                 @click="signinAccount"
               />
               <q-btn
-                class="mg-5"
+                class="mg-5 btnSignup"
                 icon="person_add"
                 label="Signup"
                 @click="openSignup = true"
-                color="negative"
               />
             </div>
 
-            <div class="col-12 btnAcesso" v-if="openSignup">
+            <div class="col-12 btnAlign" v-if="openSignup">
               <q-btn
-                class="mg-5"
+                class="mg-5 btnSignup"
                 icon="person_add"
                 label="Signup"
                 @click="signupAccount"
-                color="positive"
               />
               <q-btn
-                class="mg-5"
+                class="mg-5 btnSignin"
                 icon="keyboard_return"
                 label="Back"
-                color="negative"
                 @click="openSignup = false"
               />
             </div>
@@ -108,13 +104,29 @@ export default defineComponent({
   components: { Signup, Signin },
 });
 </script>
-<style>
+<style lang="scss">
 .alignment {
   display: flex;
   justify-content: center;
 }
-.btnAcesso {
+.btnAlign {
   display: flex;
   justify-content: center;
+}
+
+.btnSignup {
+  color: $white;
+  background-color: $lime-green;
+}
+
+.btnSignin {
+  color: $white;
+  background-color: $cerulean-crayola;
+}
+
+.titleAccount {
+  font-family: $robotoMono;
+  font-size: 2em;
+  color: $davys-grey;
 }
 </style>
