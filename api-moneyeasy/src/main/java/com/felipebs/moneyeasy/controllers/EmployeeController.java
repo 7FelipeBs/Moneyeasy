@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +30,7 @@ public class EmployeeController {
 	private EmployeeService employeeService;
 	
 	@GetMapping
+	@PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
 	public Employee paginationEmployee (
 			@RequestParam(name = "page") Integer page,
 			@RequestParam(name = "size") Integer size,
@@ -37,16 +39,19 @@ public class EmployeeController {
 	}
 	
 	@PostMapping
+	@PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
 	public ResponseEntity<Employee> save (@Valid @RequestBody Employee entity) {
 		return new ResponseEntity<>(employeeService.save(entity), HttpStatus.CREATED);
 	}
 	
 	@PutMapping
+	@PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
 	public ResponseEntity<Employee> update (@Valid @RequestBody Employee entity) {
 		return new ResponseEntity<>(employeeService.save(entity), HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/{id}")
+	@PreAuthorize("hasRole('ADMIN')")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void delete (@PathVariable Long id) {
 		employeeService.delete(id);

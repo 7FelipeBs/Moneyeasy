@@ -12,9 +12,11 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import com.felipebs.moneyeasy.config.security.jwt.AuthEntryPointJwt;
+import com.felipebs.moneyeasy.config.security.jwt.AuthTokenFilter;
 import com.felipebs.moneyeasy.config.security.service.UserDetailsServiceImpl;
-
 
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -22,6 +24,19 @@ public class WebConfigSecurity {
 
 	@Autowired
 	UserDetailsServiceImpl userDetailsService;
+
+	@Autowired
+	private AuthEntryPointJwt unauthorizedHandler;
+	
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+	
+	@Bean
+	public AuthTokenFilter authenticationJwtTokenFilter() {
+		return new AuthTokenFilter();
+	}
 
 	
 	@Bean
@@ -33,23 +48,6 @@ public class WebConfigSecurity {
 
 		return authProvider;
 	}
-
-	
-	@Bean
-	public SecurityFilterChain filterChain (HttpSecurity http) throws Exception {
-		http
-		.cors()
-		.and()
-		.csrf().disable().exceptionHandling()
-		.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-		.and().authorizeRequests()
-		.antMatchers("/api/employee/**").permitAll().anyRequest()
-		.authenticated();
-		
-		http.authenticationProvider(authenticationProvider());
-		
-		return http.build();
-	}
 	
 	@Bean
 	public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
@@ -57,7 +55,17 @@ public class WebConfigSecurity {
 	}
 	
 	@Bean
-	public PasswordEncoder passwordEncoder () {
-		return new BCryptPasswordEncoder();
+	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+		http.cors().and().csrf().disable().exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
+				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
+				.antMatchers("/api/auth/**").permitAll()
+				.antMatchers("/api/employee/**").permitAll().anyRequest()
+				.authenticated();
+
+		http.authenticationProvider(authenticationProvider());
+
+		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+		
+		return http.build();
 	}
 }

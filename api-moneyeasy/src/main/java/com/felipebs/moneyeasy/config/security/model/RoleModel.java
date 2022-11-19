@@ -1,6 +1,10 @@
 package com.felipebs.moneyeasy.config.security.model;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
+
+import org.springframework.security.core.GrantedAuthority;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,8 +17,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name = "ROLES")
-public class Role {
-	
+public class RoleModel implements Serializable, GrantedAuthority {
+	private static final long serialVersionUID = 191120220830L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ROLE_ID")
@@ -23,5 +28,10 @@ public class Role {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "ROLES_NAME")
 	private ERole name;
+
+	@Override
+	public String getAuthority() {
+		return this.name.toString();
+	}
 
 }

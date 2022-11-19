@@ -16,15 +16,18 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Setter
 @Getter
 @Entity
+@NoArgsConstructor
 @Table(name = "USERS", uniqueConstraints = { @UniqueConstraint(columnNames = "USERNAME") })
-public class User implements Serializable {
+public class UserModel implements Serializable {
 	private static final long serialVersionUID = 171120222320L;
 
 	@Id
@@ -36,10 +39,17 @@ public class User implements Serializable {
 	private String username;
 
 	@Column(name = "PASSWORD")
+	@JsonIgnore
 	private String password;
-
+	
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "USER_ROLES", joinColumns = @JoinColumn(name = "USER_ID"), inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
-	private Set<Role> roles = new HashSet<>();
+	private Set<RoleModel> roles = new HashSet<>();
+
+	
+	public UserModel (String username, String password) {
+		this.username = username;
+		this.password = password;
+	}
 
 }
