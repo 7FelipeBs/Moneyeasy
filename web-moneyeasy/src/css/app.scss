@@ -24,7 +24,11 @@ body {
   font-size: 1.4em;
 }
 
-// DAVYS LIMER GREEN //
+.mgn-5 {
+  margin: 5px;
+}
+
+// LIMER GREEN //
 .text-limergreen {
   color: $lime-green !important;
 }
@@ -32,7 +36,7 @@ body {
   background: $lime-green !important;
 }
 ////////////////////////
-// DAVYS CERULEAN CRAYOLA //
+// CERULEAN CRAYOLA //
 .text-ceruleanC {
   color: $cerulean-crayola !important;
 }
@@ -54,11 +58,19 @@ body {
   background: $davys-grey-soft !important;
 }
 ////////////////////////
-// DAVYS PINK LAVENDER //
+// PINK LAVENDER //
 .text-pinkLavender {
-  color: pink-lavender !important;
+  color: $pink-lavender !important;
 }
 .bg-pinkLavender {
-  background: pink-lavender !important;
+  background: $pink-lavender !important;
+}
+////////////////////////
+// WHITE //
+.text-pinkLavender {
+  color: $white !important;
+}
+.bg-pinkLavender {
+  background: $white !important;
 }
 ////////////////////////

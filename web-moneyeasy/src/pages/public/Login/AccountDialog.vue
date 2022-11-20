@@ -3,7 +3,7 @@
     <q-dialog v-model="dialogAcess">
       <q-card>
         <q-card-section>
-          <div class="text-h6 alignment titleAccount">Account</div>
+          <div class="text-h6 alignment titleAccount">User</div>
         </q-card-section>
 
         <q-card-section class="q-pt-none">

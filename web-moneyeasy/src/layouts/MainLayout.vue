@@ -3,9 +3,9 @@
     <q-header elevated class="menu">
       <q-toolbar>
         <q-btn flat @click="drawer = !drawer" round dense icon="menu" />
-        <q-toolbar-title style="font-family: 'Roboto Mono'"
-          >Menu</q-toolbar-title
-        >
+        <q-toolbar-title style="font-family: 'Roboto Mono'">
+          Menu
+        </q-toolbar-title>
         <q-btn
           flat
           @click="openAccount"
@@ -27,7 +27,7 @@
           <template v-for="(menuItem, index) in menuList" :key="index">
             <q-item
               clickable
-              @click="getActiveEffect(menuItem)"
+              @click="goRouteItem(menuItem)"
               :class="[
                 selectedItem.label === menuItem.label ? 'bg-blue-grey-1' : '',
               ]"
@@ -40,6 +40,7 @@
                 {{ menuItem.label }}
               </q-item-section>
             </q-item>
+            <q-separator v-if="index === 0" />
           </template>
         </q-list>
       </q-drawer>
@@ -55,27 +56,16 @@
 
 <script>
 import { defineComponent, ref } from "vue";
-import AccountDialog from "src/pages/Login/AccountDialog.vue";
+import AccountDialog from "src/pages/public/Login/AccountDialog.vue";
+
+import menu from "src/scripts/menu";
 
 export default defineComponent({
   name: "MainLayout",
 
   setup() {
     return {
-      menuList: [
-        {
-          icon: "people_alt",
-          label: "Register Client",
-        },
-        {
-          icon: "manage_accounts",
-          label: "Manage Employee",
-        },
-        {
-          icon: "admin_panel_settings",
-          label: "Configuration",
-        },
-      ],
+      menuList: menu,
 
       drawer: ref(false),
       selectedItem: ref(""),
@@ -84,8 +74,9 @@ export default defineComponent({
   },
 
   methods: {
-    getActiveEffect(item) {
+    goRouteItem(item) {
       this.selectedItem = item;
+      this.$router.push(item.path);
     },
 
     openAccount() {

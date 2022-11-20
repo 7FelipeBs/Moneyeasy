@@ -2,7 +2,7 @@
   "name": "web-moneyeasy",
   "version": "0.0.1",
   "description": "Project to financial managed",
-  "productName": "Moneyeasy",
+  "productName": "Money Easy",
   "author": "Felipe B Silva <programming1129@gmail.com>",
   "private": true,
   "scripts": {
