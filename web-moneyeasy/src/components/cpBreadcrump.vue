@@ -1,9 +1,6 @@
 <template>
-  <div gutter="md">
+  <div gutter="md" class="flex items-center breadCrumpCard">
     <q-breadcrumbs>
-      <template v-slot:separator>
-        <q-icon size="1.2em" name="arrow_forward" color="purple" />
-      </template>
       <div v-for="(item, index) in arrayBreadCrump" :key="index">
         <q-breadcrumbs-el
           class="breadCrumbsEl"
@@ -44,7 +41,15 @@ export default defineComponent({
 .breadCrumbsEl {
   color: $white;
   background-color: $davys-grey;
-  padding: 10px;
+  padding: 12px;
   border-radius: 50px;
+  font-size: 1em;
+}
+
+.breadCrumpCard {
+  padding: 5px;
+  background-color: $davys-grey-soft;
+  border-radius: 10px;
+  margin: 25px 10px;
 }
 </style>

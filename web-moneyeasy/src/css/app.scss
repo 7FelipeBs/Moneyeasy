@@ -24,15 +24,35 @@ body {
   font-size: 1.4em;
 }
 
+.title {
+  padding: 20px 0;
+  margin: 20px 0;
+  background-color: $davys-grey-trans;
+  font-weight: bolder;
+  border-radius: 10px;
+}
+
+.text-title {
+  margin: 0 20px;
+  color: $davys-grey;
+  font-size: 0.5em;
+}
+
 .mgn-5 {
   margin: 5px;
 }
 
+.mgn-cp {
+  margin-top: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
 // LIMER GREEN //
-.text-limergreen {
+.text-limerGreen {
   color: $lime-green !important;
 }
-.bg-limergreen {
+.bg-limerGreen {
   background: $lime-green !important;
 }
 ////////////////////////
@@ -59,18 +79,18 @@ body {
 }
 ////////////////////////
 // PINK LAVENDER //
-.text-pinkLavender {
+.text-pinklavender {
   color: $pink-lavender !important;
 }
-.bg-pinkLavender {
+.bg-pinklavender {
   background: $pink-lavender !important;
 }
 ////////////////////////
 // WHITE //
-.text-pinkLavender {
+.text-white {
   color: $white !important;
 }
-.bg-pinkLavender {
+.bg-white {
   background: $white !important;
 }
 ////////////////////////

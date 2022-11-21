@@ -3,13 +3,15 @@
     <q-card>
       <q-card-section>
         <div class="flex justify-between items-center row">
+          <div class="col-12 title">
+            <div class="text-title">{{ title }}</div>
+          </div>
+
           <div class="col-6">
-            <q-input
-              standout="bg-davysGreys-soft"
-              filled
-              label-color="davysGreys"
-              placeholder="Search for keywords"
+            <cp-input
+              ref="refLastName"
               v-model="keywordsToSearch"
+              labelInput="Search for keywords"
             />
           </div>
           <div>
@@ -32,7 +34,7 @@
                 v-for="col in props.cols"
                 :key="col.name"
                 :props="props"
-                class="text-title"
+                class="text-title-table"
               >
                 {{ col.label }}
               </q-th>
@@ -78,6 +80,7 @@
 
 <script>
 import { defineComponent, ref } from "vue";
+import CpInput from "../components/cpInput.vue";
 
 export default defineComponent({
   props: {
@@ -112,9 +115,7 @@ export default defineComponent({
     };
   },
 
-  methods: {
-    teste() {},
-  },
+  components: { CpInput },
 });
 </script>
 <style lang="scss">
@@ -122,7 +123,7 @@ export default defineComponent({
   color: $davys-grey;
 }
 
-.text-title {
+.text-title-table {
   color: $dark-page;
 }
 
@@ -130,9 +131,5 @@ export default defineComponent({
   color: $white;
   margin-right: 10px;
   background-color: $lime-green;
-}
-
-.title {
-  padding: 25px;
 }
 </style>

@@ -1,18 +1,14 @@
 <template>
   <div>
     <q-card>
-      <q-card-section>
-        <cp-breadcrump :arrayBreadCrump="pageInformation.crumbsPath" />
-      </q-card-section>
+      <cp-breadcrump :arrayBreadCrump="pageInformation.crumbsPath" />
 
-      <div>
-        <cp-search
-          :columns="columns"
-          :data="rows"
-          :registerScreen="registerScreen"
-          title="Employees"
-        />
-      </div>
+      <cp-search
+        :columns="columns"
+        :data="rows"
+        :registerScreen="registerScreen"
+        :title="pageInformation.title"
+      />
     </q-card>
   </div>
 </template>
@@ -43,7 +39,7 @@ export default defineComponent({
         },
         {
           name: "birthDate",
-          label: "Birth Date)",
+          label: "Birth Date",
           align: "center",
           field: (row) => row.birthDate,
         },
@@ -100,6 +96,7 @@ export default defineComponent({
       ],
 
       pageInformation: {
+        title: "Employees",
         crumbsPath: [
           {
             label: "Employees",
@@ -113,32 +110,50 @@ export default defineComponent({
 
   methods: {
     visualize(item) {
-      console.log("visualizou...");
-      this.goScreen(item, true, "visualize");
+      this.goScreen({
+        operation: "visualize",
+        icon: "visibility",
+        label: "Visualize Employee",
+        entity: item,
+        disable: true,
+      });
     },
     edit(item) {
-      console.log("editou...");
-      this.goScreen(item, false, "edit");
+      this.goScreen({
+        operation: "edit",
+        icon: "edit",
+        label: "Edit Employee",
+        entity: item,
+        disable: false,
+      });
     },
     delete() {
-      console.log("deletou...");
+      console.log("delete...");
     },
     registerScreen() {
-      this.goScreen(null, false, "new");
+      this.goScreen({
+        operation: "new",
+        icon: "add",
+        label: "New Employee",
+        entity: null,
+        disable: false,
+      });
     },
 
-    goScreen(item, disable, operation) {
+    goScreen(item) {
       this.$router.push({
         name: "employeeInfo",
 
-        query: {
-          disablePage: disable,
-          operation: operation,
-          item: item,
-          label: "Employees",
-          icon: "badge",
-          path: "/employeeSearch",
-          array: [...this.pageInformation.crumbsPath],
+        params: {
+          item: JSON.stringify({
+            ...this.pageInformation,
+            disablePage: item.disable,
+            operation: item.operation,
+            entity: item.entity,
+            icon: item.icon,
+            label: item.label,
+            path: "/employeeSearch",
+          }),
         },
       });
     },
