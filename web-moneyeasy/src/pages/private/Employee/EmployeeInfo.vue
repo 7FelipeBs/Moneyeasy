@@ -37,7 +37,7 @@
                 />
               </div>
 
-              <div class="col-12">
+              <div class="col-md-3 col-xs-12">
                 <cp-money
                   ref="refSalary"
                   v-model="employee.salary"
@@ -111,7 +111,7 @@ export default defineComponent({
 
     loadInit() {
       if (this.pageInformation.operation !== "new") {
-        this.employee = this.pageInformation.item;
+        this.employee = this.pageInformation.entity;
       }
     },
   },
