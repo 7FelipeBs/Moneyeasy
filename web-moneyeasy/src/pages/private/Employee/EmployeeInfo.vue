@@ -7,7 +7,7 @@
         <q-card>
           <q-card-section>
             <div class="flex justify-between items-center row">
-              <div class="col-12 title">
+              <div class="col-12 titleSearch">
                 <div class="text-title">{{ pageInformation.title }}</div>
               </div>
             </div>
@@ -15,33 +15,45 @@
             <div class="row">
               <div class="col-md-6 col-xs-12">
                 <cp-input
+                  id="name"
+                  name="name"
                   ref="refName"
-                  v-model="employee.name"
                   labelInput="Name"
+                  :disable="pageInformation.disablePage"
+                  v-model="employee.name"
                 />
               </div>
 
               <div class="col-md-6 col-xs-12">
                 <cp-input
+                  id="lastName"
+                  name="lastName"
                   ref="refLastName"
-                  v-model="employee.lastName"
                   labelInput="Last Name"
+                  :disable="pageInformation.disablePage"
+                  v-model="employee.lastName"
                 />
               </div>
 
               <div class="col-md-3 col-xs-12">
                 <cp-date-input
+                  id="birthDate"
+                  name="birthDate"
                   ref="refBirthDate"
-                  v-model="employee.birthDate"
                   labelInput="Birth Date"
+                  :disable="pageInformation.disablePage"
+                  v-model="employee.birthDate"
                 />
               </div>
 
               <div class="col-md-3 col-xs-12">
                 <cp-money
+                  id="salary"
+                  name="salary"
                   ref="refSalary"
-                  v-model="employee.salary"
                   labelMoney="Salary"
+                  :disable="pageInformation.disablePage"
+                  v-model="employee.salary"
                 />
               </div>
             </div>
@@ -53,6 +65,7 @@
                 icon="clear"
                 size="1.5em"
                 class="mgn-5"
+                :disable="pageInformation.disablePage"
                 @click="clearFiedls"
               />
               <q-btn
@@ -61,6 +74,7 @@
                 icon="done"
                 size="1.5em"
                 class="mgn-5"
+                :disable="pageInformation.disablePage"
               />
             </div>
           </q-card-section>
@@ -71,13 +85,12 @@
 </template>
 
 <script>
-import { defineComponent, ref } from "vue";
 import CpBreadcrump from "../../../components/cpBreadcrump.vue";
 import CpMoney from "../../../components/cpMoney.vue";
 import CpInput from "../../../components/cpInput.vue";
 import CpDateInput from "../../../components/cpDateInput.vue";
 
-export default defineComponent({
+export default {
   name: "EmployeeInfo",
 
   setup() {
@@ -89,13 +102,13 @@ export default defineComponent({
       pageInformation: {
         crumbsPath: [],
         title: "",
+        disablePage: "",
       },
 
       employee: {
         birthDate: null,
-        name: null,
-        lastName: null,
-        name: null,
+        name: "",
+        lastName: "",
         salary: null,
       },
     };
@@ -134,7 +147,7 @@ export default defineComponent({
   },
 
   components: { CpBreadcrump, CpMoney, CpInput, CpDateInput },
-});
+};
 </script>
 <style lang="scss">
 .btnOperation {

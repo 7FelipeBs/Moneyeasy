@@ -1,7 +1,7 @@
 <template>
   <q-page class="flex flex-center">
-    <q-icon class="iconMoney" name="monetization_on" />
-    <div class="title">Money Easy</div>
+    <q-icon class="iconMoneyHome" name="monetization_on" />
+    <div class="titleHome">Money Easy</div>
   </q-page>
 </template>
 
@@ -13,13 +13,14 @@ export default defineComponent({
 });
 </script>
 <style lang="scss">
-.title {
+.titleHome {
   font-size: 8em;
+  text-shadow: 2px 1px 3px $davys-grey;
   color: $davys-grey;
   font-family: "Roboto Mono";
 }
 
-.iconMoney {
+.iconMoneyHome {
   font-size: 8em;
   color: $lime-green;
 }

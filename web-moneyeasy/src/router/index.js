@@ -37,5 +37,19 @@ export default route(function (/* { store, ssrContext } */) {
     ),
   });
 
+  Router.beforeEach((to, from, next) => {
+    console.log("rotaaaaaaa");
+    next();
+
+    // if (
+    //   to.matched.some((record) => record.meta.requiresAuth) &&
+    //   !store.getters["auth/isSignedIn"]
+    // ) {
+    //   next({ name: "account-signin", query: { next: to.fullPath } });
+    // } else {
+    //   next();
+    // }
+  });
+
   return Router;
 });

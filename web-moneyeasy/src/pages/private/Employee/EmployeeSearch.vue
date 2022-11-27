@@ -1,26 +1,33 @@
 <template>
   <div>
     <q-card>
-      <cp-breadcrump :arrayBreadCrump="pageInformation.crumbsPath" />
+      <div>
+        <cp-breadcrump :arrayBreadCrump="pageInformation.crumbsPath" />
+      </div>
 
-      <cp-search
-        :columns="columns"
-        :data="rows"
-        :registerScreen="registerScreen"
-        :title="pageInformation.title"
-      />
+      <div>
+        <cp-search
+          :columns="columns"
+          :rows="rows"
+          :registerScreen="registerScreen"
+          :title="pageInformation.title"
+        />
+      </div>
     </q-card>
   </div>
 </template>
 
 <script>
 import { defineComponent } from "vue";
-import CpSearch from "../../../components/cpSearch.vue";
-import CpBreadcrump from "../../../components/cpBreadcrump.vue";
+
+import CpSearch from "components/cpSearch.vue";
+import CpBreadcrump from "components/cpBreadcrump.vue";
 
 export default defineComponent({
   name: "EmployeeSearch",
-
+  setup() {
+    return {};
+  },
   data() {
     return {
       columns: [
@@ -61,14 +68,70 @@ export default defineComponent({
         {
           name: "Felipe",
           lastName: "Silva",
-          birthDate: "02-09-2000",
+          birthDate: "2000-02-09",
           salary: 1808.45,
           operations: [],
         },
         {
           name: "Marcia",
           lastName: "Oliveira",
-          birthDate: "30-11-1991",
+          birthDate: "1991-11-30",
+          salary: 4968.54,
+          operations: [],
+        },
+        {
+          name: "Antonia",
+          lastName: "Souza",
+          birthDate: "2000-02-09",
+          salary: 1808.45,
+          operations: [],
+        },
+        {
+          name: "Renato",
+          lastName: "Henrique",
+          birthDate: "1991-11-30",
+          salary: 4968.54,
+          operations: [],
+        },
+        {
+          name: "Brayan",
+          lastName: "Oliveira",
+          birthDate: "2000-02-09",
+          salary: 1808.45,
+          operations: [],
+        },
+        {
+          name: "Lucas",
+          lastName: "Santana",
+          birthDate: "1991-11-30",
+          salary: 4968.54,
+          operations: [],
+        },
+        {
+          name: "Monique",
+          lastName: "Cardoso",
+          birthDate: "2000-02-09",
+          salary: 1808.45,
+          operations: [],
+        },
+        {
+          name: "Olivia",
+          lastName: "Silva",
+          birthDate: "1991-11-30",
+          salary: 4968.54,
+          operations: [],
+        },
+        {
+          name: "Herinque",
+          lastName: "Machado",
+          birthDate: "2000-02-09",
+          salary: 1808.45,
+          operations: [],
+        },
+        {
+          name: "Ryan",
+          lastName: "Barbosa",
+          birthDate: "1991-11-30",
           salary: 4968.54,
           operations: [],
         },
@@ -143,7 +206,6 @@ export default defineComponent({
     goScreen(item) {
       this.$router.push({
         name: "employeeInfo",
-
         params: {
           item: JSON.stringify({
             ...this.pageInformation,

@@ -5,17 +5,20 @@ const routes = [
     children: [
       { path: "", component: () => import("src/pages/Home.vue") },
       {
-        path: "/employeeSearch/",
+        path: "/login",
+        name: "Login",
+        component: () => import("src/pages/public/Login/LoginAcess.vue"),
+      },
+      {
+        path: "/employeeSearch",
         name: "employeeSearch",
         component: () =>
           import("src/pages/private/Employee/EmployeeSearch.vue"),
-        params: { test: {} },
       },
       {
         path: "/employeeInfo:item",
         name: "employeeInfo",
         component: () => import("src/pages/private/Employee/EmployeeInfo.vue"),
-        params: { test: {} },
       },
     ],
   },

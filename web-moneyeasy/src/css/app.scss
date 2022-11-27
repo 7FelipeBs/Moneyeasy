@@ -24,7 +24,7 @@ body {
   font-size: 1.4em;
 }
 
-.title {
+.titleSearch {
   padding: 20px 0;
   margin: 20px 0;
   background-color: $davys-grey-trans;
@@ -35,11 +35,23 @@ body {
 .text-title {
   margin: 0 20px;
   color: $davys-grey;
-  font-size: 2em;
+  font-size: 3em;
 }
 
 .mgn-5 {
   margin: 5px;
+}
+
+.mgn-10 {
+  margin: 10px;
+}
+
+.mgn-15 {
+  margin: 15px;
+}
+
+.mgn-20 {
+  margin: 20px;
 }
 
 .mgn-cp {
@@ -68,14 +80,22 @@ body {
 .text-davysGreys {
   color: $davys-grey !important;
 }
-.text-davysGreys-soft {
-  color: $davys-grey-soft !important;
-}
 .bg-davysGreys {
   background: $davys-grey !important;
 }
+
+.text-davysGreys-soft {
+  color: $davys-grey-soft !important;
+}
 .bg-davysGreys-soft {
   background: $davys-grey-soft !important;
+}
+
+.text-davysGreys-trans {
+  color: $davys-grey-trans !important;
+}
+.bg-davysGreys-trans {
+  background: $davys-grey-trans !important;
 }
 ////////////////////////
 // PINK LAVENDER //

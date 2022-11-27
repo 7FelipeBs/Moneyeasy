@@ -6,14 +6,6 @@
         <q-toolbar-title style="font-family: 'Roboto Mono'">
           Menu
         </q-toolbar-title>
-        <q-btn
-          flat
-          @click="openAccount"
-          round
-          dense
-          icon="account_circle"
-          class="btnLoginDialog"
-        ></q-btn>
       </q-toolbar>
 
       <q-drawer
@@ -44,8 +36,6 @@
           </template>
         </q-list>
       </q-drawer>
-
-      <account-dialog ref="refAccountDialog" :value="dialogOpen" />
     </q-header>
 
     <q-page-container>
@@ -56,7 +46,6 @@
 
 <script>
 import { defineComponent, ref } from "vue";
-import AccountDialog from "src/pages/public/Login/AccountDialog.vue";
 
 import menu from "src/scripts/menu";
 
@@ -67,7 +56,7 @@ export default defineComponent({
     return {
       menuList: menu,
 
-      drawer: ref(false),
+      drawer: ref(true),
       selectedItem: ref(""),
       dialogOpen: ref(false),
     };
@@ -78,12 +67,6 @@ export default defineComponent({
       this.selectedItem = item;
       this.$router.push(item.path);
     },
-
-    openAccount() {
-      this.$refs.refAccountDialog.openAccount();
-    },
   },
-
-  components: { AccountDialog },
 });
 </script>

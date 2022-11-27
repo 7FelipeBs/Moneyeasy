@@ -1,14 +1,24 @@
 <template>
   <div>
-    <q-field filled v-model="inputValue" :label="labelMoney" class="mgn-cp">
+    <q-field
+      filled
+      v-model="value"
+      :label="labelMoney"
+      class="mgn-cp"
+      :disable="disable"
+      :readonly="disable"
+    >
       <template v-slot:control="{ id, floatingLabel, modelValue, emitValue }">
         <input
+          v-show="floatingLabel"
           :id="id"
+          :name="name"
           class="q-field__input text-right"
           :value="modelValue"
+          :disable="disable"
+          :readonly="disable"
           @change="(e) => emitValue(e.target.value)"
           v-money="moneyFormatForDirective"
-          v-show="floatingLabel"
         />
       </template>
     </q-field>
@@ -21,29 +31,64 @@ import { VMoney } from "v-money";
 
 export default {
   props: {
+    modelValue: {
+      typeof: [String, Number],
+      default: "",
+    },
+
+    id: {
+      type: String,
+      required: true,
+    },
+
+    name: {
+      type: String,
+      required: true,
+    },
+
     labelMoney: {
       typeof: String,
       default: "",
     },
+
+    disable: {
+      typeof: Boolean,
+      default: false,
+    },
   },
 
+  emits: ["update:modelValue"],
+
   setup() {
+    const moneyFormatForDirective = ref({
+      decimal: ".",
+      thousands: ",",
+      prefix: "$ ",
+      suffix: "",
+      precision: 2,
+      masked: false /* doesn't work with directive */,
+    });
+
     return {
-      inputValue: ref(null),
-      moneyFormatForDirective: {
-        decimal: ".",
-        thousands: ",",
-        prefix: "$ ",
-        suffix: "",
-        precision: 2,
-        masked: false /* doesn't work with directive */,
-      },
+      moneyFormatForDirective,
     };
   },
 
   methods: {
     clear() {
-      this.inputValue = "";
+      this.value = "";
+    },
+  },
+
+  computed: {
+    value: {
+      get() {
+        return this.modelValue;
+      },
+
+      set(value) {
+        this.$emit("update:modelValue", value);
+      },
     },
   },
 

@@ -26,15 +26,6 @@ export default defineComponent({
       required: true,
     },
   },
-  data() {
-    return {};
-  },
-
-  methods: {},
-
-  mounted() {},
-
-  components: {},
 });
 </script>
 <style lang="scss">
